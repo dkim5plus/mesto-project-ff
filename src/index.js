@@ -8,9 +8,9 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const popupEdit = document.querySelector('.popup_type_edit');
 const nameForm = document.querySelector('.profile__title');
 const jobForm = document.querySelector('.profile__description');
-const formElement = document.forms["edit-profile"];
-const nameInput = formElement.elements.name;
-const jobInput = formElement.elements.description;
+const profileFormElement = document.forms["edit-profile"];
+const nameInput = profileFormElement.elements.name;
+const jobInput = profileFormElement.elements.description;
 
 profileEditButton.addEventListener('click', function() {
     openModal(popupEdit);
@@ -18,14 +18,14 @@ profileEditButton.addEventListener('click', function() {
     jobInput.value = jobForm.textContent;
 });
 
-function handleFormSubmit(evt) {
-    evt.preventDefault(); 
+function handleProfileFormSubmit(evt) {
+    evt.preventDefault();
     nameForm.textContent = nameInput.value;
     jobForm.textContent = jobInput.value;
     closeModal(popupEdit);
 };
 
-formElement.addEventListener('submit', handleFormSubmit); 
+profileFormElement.addEventListener('submit', handleProfileFormSubmit); 
 
 /*Инициализация карт*/
 const cardList = document.querySelector(".places__list");
