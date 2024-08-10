@@ -1,13 +1,13 @@
-function openModal(pop) {
+export function openModal(pop) {
     pop.classList.add('popup_is-opened');
     document.addEventListener('keydown', closeModalByEscape);
-    document.addEventListener('click', closeModalByCross);
+    pop.addEventListener('click', closeModalByOverlay);
 };
 
-function closeModal(pop) {
+export function closeModal(pop) {
     pop.classList.remove('popup_is-opened');
     document.removeEventListener('keydown', closeModalByEscape);
-    document.removeEventListener('click', closeModalByCross);
+    pop.removeEventListener('click', closeModalByOverlay);
 };
 
 function closeModalByEscape(evt) {
@@ -23,4 +23,3 @@ function closeModalByOverlay(evt) {
     };
 };
 
-export { openModal, closeModal }
