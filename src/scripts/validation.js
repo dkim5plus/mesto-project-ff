@@ -17,6 +17,7 @@ const showInputError = (formElement, inputElement, errorMessage, validationConfi
 const hideInputError = (formElement, inputElement, validationConfig) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}_error`);
     inputElement.classList.remove(validationConfig.inputErrorClass);
+    inputElement.setCustomValidity('');
     errorElement.classList.remove(validationConfig.errorClass);
     errorElement.textContent = '';
 };

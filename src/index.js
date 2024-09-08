@@ -3,6 +3,7 @@ import { openModal, closeModal } from './scripts/modal.js';
 import { createCard, deleteCard, addLike } from './scripts/card.js';
 import { enableValidation, clearValidation, validationConfig } from "./scripts/validation.js";
 import { getUser, getCards, editUser, addCards, updateAvatar } from "./scripts/api.js";
+import { renderLoading } from './scripts/utils.js';
 
 /* Открытия попапа профиля и редактирование*/
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -85,9 +86,9 @@ function openImage(link, alt) {
 };
 
 /*Закрытие попапа через крестик*/
-const popupClose = document.querySelectorAll(".popup__close");
+const buttonsClosePopup = document.querySelectorAll(".popup__close");
 
-popupClose.forEach(function(evt) {
+buttonsClosePopup.forEach(function(evt) {
     const popup = evt.closest('.popup');
     evt.addEventListener('click', function() {
         closeModal(popup);
@@ -117,6 +118,7 @@ cardNewPlace.addEventListener('submit', function(evt) {
             cardList.prepend(card);
             closeModal(popupCard);
             cardNewPlace.reset();
+            clearValidation(cardNewPlace, validationConfig)
         })
         .catch(err => {
             console.log(err)
@@ -143,12 +145,3 @@ Promise.all([getUser(), getCards()])
     .catch((err) => {
         console.log(err)
     });
-    
-    
-function renderLoading(load, popup) {
-    if (load) {
-        popup.querySelector(".button").textContent = "Сохранение...";
-    } else {
-        popup.querySelector(".button").textContent = "Сохранить";
-    }
-};
